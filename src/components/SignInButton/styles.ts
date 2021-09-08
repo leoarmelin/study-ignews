@@ -3,7 +3,7 @@ import { FaGithub } from 'react-icons/fa';
 import { FiX } from 'react-icons/fi';
 
 interface IGithubIcon {
-  isActive: boolean;
+  $isOnline: boolean;
 }
 
 export const Button = styled.button`
@@ -40,7 +40,7 @@ export const Button = styled.button`
 `;
 
 export const GithubIcon = styled(FaGithub)<IGithubIcon>`
-  color: ${(props) => (props.isActive ? '#04d361' : '#eba417')};
+  color: ${(props) => (props.$isOnline ? '#04d361' : '#eba417')};
 `;
 
 export const CloseIcon = styled(FiX)`

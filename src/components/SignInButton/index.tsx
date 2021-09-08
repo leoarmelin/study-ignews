@@ -1,13 +1,15 @@
+import { signIn, signOut, useSession } from 'next-auth/client';
+
 import { Button, GithubIcon, CloseIcon } from './styles';
 
 export function SignInButton() {
-  const isUserLoggedIn = true;
+  const [session] = useSession();
 
   return (
-    <Button>
-      <GithubIcon isActive={isUserLoggedIn} />
-      {isUserLoggedIn ? 'Leozinho Delas' : 'Sign in with Github'}
-      {isUserLoggedIn && <CloseIcon />}
+    <Button onClick={() => (session ? signOut() : signIn('github'))}>
+      <GithubIcon $isOnline={!!session} />
+      {session ? session.user.name : 'Sign in with Github'}
+      {session && <CloseIcon />}
     </Button>
   );
 }
