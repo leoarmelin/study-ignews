@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import Link from "next/link";
 import { SEO } from "../../components/SEO";
 import Prismic from "@prismicio/client";
 import { getPrismicClient } from "../../services/prismic";
@@ -31,11 +32,13 @@ export default function Posts({ posts }: IPostsProps) {
       <Container>
         <Content>
           {posts?.map((post) => (
-            <PostContainer key={post.slug} href="#">
-              <PostTime>{post.updatedAt}</PostTime>
-              <PostTitle>{post.title}</PostTitle>
-              <PostParagraph>{post.excerpt}</PostParagraph>
-            </PostContainer>
+            <Link key={post.slug} href={`/posts/${post.slug}`} passHref>
+              <PostContainer>
+                <PostTime>{post.updatedAt}</PostTime>
+                <PostTitle>{post.title}</PostTitle>
+                <PostParagraph>{post.excerpt}</PostParagraph>
+              </PostContainer>
+            </Link>
           ))}
         </Content>
       </Container>
